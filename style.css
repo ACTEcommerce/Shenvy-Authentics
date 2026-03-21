@@ -67,3 +67,67 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 /* Sidebar Items */
 .side-item { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
 .side-item img { width: 60px; height: 75px; object-fit: cover; }
+
+@media (max-width: 768px) {
+    
+    /* 1. Himoon natong 1 column ra ang bags para dako tan-awon sa CP */
+    .product-grid-2 {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+        padding: 20px;
+    }
+
+    /* 2. I-adjust ang height sa picture para dili ra kaayo mubo o taas */
+    .img-holder {
+        height: 400px;
+    }
+
+    /* 3. I-stack ang Navigation (Logo sa taas, Search sa ubos) */
+    .nav-top-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 4. I-adjust ang Sidebar (Your Bag) para mo-cover sa tibuok screen sa CP */
+    .sidebar {
+        width: 100%;
+        right: -100%; /* Gitago sa tuo */
+    }
+
+    /* 5. Himoon natong scrollable ang filters para dili maghuot */
+    .filters {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+        width: 100%;
+        gap: 15px;
+    }
+
+    /* Tagoa ang scrollbar sa filters para limpyo tan-awon */
+    .filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .f-link {
+        flex-shrink: 0;
+    }
+
+    /* 6. Gamayan gamay ang font sa logo ug items */
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .item-name {
+        font-size: 1.3rem;
+    }
+}
