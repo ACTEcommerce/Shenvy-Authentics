@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER | Artisan Leather</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="overlay" onclick="closePanels()"></div>
+
+    <aside id="bagSidebar" class="sidebar">
+        <div class="side-header">
+            <h2>Your Bag</h2>
+            <button class="close-panel" onclick="closePanels()">&times;</button>
+        </div>
+        <div id="bagItems" class="side-content">
+            </div>
+        <div class="side-footer">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="bagTotal">₱0</span>
+            </div>
+            <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+        </div>
+    </aside>
+
+    <aside id="wishSidebar" class="sidebar">
+        <div class="side-header">
+            <h2>Wishlist</h2>
+            <button class="close-panel" onclick="closePanels()">&times;</button>
+        </div>
+        <div id="wishItems" class="side-content">
+            </div>
+    </aside>
+
+    <nav class="top-nav">
+        <div class="nav-top-row">
+            <div class="logo">Shenvy Authentics
+</div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search collection..." onkeyup="render()">
+            </div>
+            <div class="nav-icons">
+                <div class="icon-link" onclick="openPanel('wishSidebar')">♥ <span id="wish-count">0</span></div>
+                <div class="icon-link" onclick="openPanel('bagSidebar')">BAG (<span id="cart-count">0</span>)</div>
+            </div>
+        </div>
+        <div class="nav-bottom-row">
+            <div class="filters">
+                <button class="f-link active" onclick="filterItems('all', this)">All</button>
+                <button class="f-link" onclick="filterItems('Hand Bag', this)">Hand</button>
+                <button class="f-link" onclick="filterItems('Shoulder Bag', this)">Shoulder</button>
+                <button class="f-link" onclick="filterItems('Wallet', this)">Wallet</button>
+            </div>
+            <select id="priceSort" onchange="render()">
+                <option value="default">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="product-grid-2" id="grid"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
