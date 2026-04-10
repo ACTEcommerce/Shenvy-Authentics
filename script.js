@@ -541,5 +541,9 @@ function closeVoucher() {
     const popup = document.getElementById('voucherPopup');
     if (popup) {
         popup.style.display = 'none';
+        window.onload = function() {
+    render(); // Kini ang mo-trigger sa pagpakita sa items
+    renderReviews(); 
+};
     }
 }
