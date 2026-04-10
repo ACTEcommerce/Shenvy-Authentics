@@ -194,3 +194,24 @@ function filterItems(cat, btn) {
     currentFilter = cat;
     render();
 }
+function closeVoucher() {
+    const popup = document.getElementById('voucherPopup');
+    const overlay = document.getElementById('overlay');
+    if (popup) popup.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+}
+
+function claimVoucher() {
+    // 1. I-save sa local storage para dili na sige'g pakita
+    localStorage.setItem('shenvy_voucher_claimed', 'true');
+    isVoucherApplied = true;
+    
+    // 2. I-copy ang code sa clipboard (optional pero nindot)
+    const voucherCode = "SHENVY50OFF";
+    navigator.clipboard.writeText(voucherCode).then(() => {
+        alert("Voucher Claimed! 'SHENVY50OFF' has been copied. 50% discount will be applied at checkout.");
+    });
+
+    // 3. Sirado ang popup
+    closeVoucher();
+}
