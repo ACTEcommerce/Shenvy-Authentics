@@ -188,10 +188,14 @@ function closePanels() {
     document.getElementById('overlay').style.display = 'none';
 }
 function showLogin() {
-    closePanels(); 
+    closePanels(); // Siguroha nga sirado ang uban
     const modal = document.getElementById('loginModal');
-    modal.style.display = 'block'; 
-    document.getElementById('overlay').style.display = 'block';
+    if (modal) {
+        modal.style.display = 'block'; 
+        // I-add ni para mo-center gyud siya base sa imong bag-ong CSS
+        modal.classList.add('open'); 
+        document.getElementById('overlay').style.display = 'block';
+    }
 }
 function closeLogin() { closePanels(); }
 function closeAdmin() {
@@ -205,7 +209,11 @@ function checkLogin() {
     const p = document.getElementById('adminPass').value.trim();
 
     if (u === "admin" && p === "admin") {
-        closePanels();
+        // Sirado ang login modal
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('loginModal').classList.remove('open');
+        
+        // Pakita ang Admin Panel
         setTimeout(() => {
             const panel = document.getElementById('adminPanel');
             panel.classList.add('open');
@@ -215,8 +223,6 @@ function checkLogin() {
         }, 400);
     } else {
         alert("Incorrect credentials.");
-        console.log("Attempted User:", u);
-        console.log("Attempted Pass:", p);
     }
 }
 
