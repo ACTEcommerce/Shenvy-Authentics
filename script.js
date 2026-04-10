@@ -28,16 +28,16 @@ let isVoucherApplied = false;
 
 // --- 2. INITIALIZATION ---
 window.onload = function() {
-    render();
-    renderReviews();
+    render(); // Para mogawas ang mga bags
+    renderReviews(); // Para mogawas ang reviews
     
-    // Voucher Popup
-    const hasClaimed = localStorage.getItem('shenvy_voucher_claimed');
+    // I-check kung naka-claim na ba
+    const hasClaimed = localStorage.getItem('shenvy_claimed_50');
     if (!hasClaimed) {
         setTimeout(() => {
             const popup = document.getElementById('voucherPopup');
-            if(popup) popup.style.display = 'flex';
-        }, 2000);
+            if (popup) popup.style.display = 'flex';
+        }, 3000); // Mogawas human sa 3 seconds
     }
 };
 
