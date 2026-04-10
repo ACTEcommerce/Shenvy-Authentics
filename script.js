@@ -188,20 +188,25 @@ function closePanels() {
     document.getElementById('overlay').style.display = 'none';
 }
 function showLogin() {
-    closePanels(); // Siguroha nga sirado ang uban
+    // Siguroha nga sirado ang uban (bag, wishlist, etc.)
+    closePanels(); 
+    
     const modal = document.getElementById('loginModal');
-    if (modal) {
-        modal.style.display = 'block'; 
-        // I-add ni para mo-center gyud siya base sa imong bag-ong CSS
-        modal.classList.add('open'); 
-        document.getElementById('overlay').style.display = 'block';
+    const overlay = document.getElementById('overlay');
+    
+    if (modal && overlay) {
+        modal.style.display = 'block'; // Diha pa siya dapat mo-pakita
+        overlay.style.display = 'block';
     }
 }
-function closeLogin() { closePanels(); }
-function closeAdmin() {
-    document.getElementById('adminPanel').style.right = "-100%";
-    document.getElementById('adminPanel').classList.remove('open');
+
+// I-update pud ang closePanels para i-tago siya balik
+function closePanels() {
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.style.display = 'none';
+    
     document.getElementById('overlay').style.display = 'none';
+    document.querySelectorAll('.sidebar').forEach(s => s.classList.remove('open'));
 }
 
 function checkLogin() {
