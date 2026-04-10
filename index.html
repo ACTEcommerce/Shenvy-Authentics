@@ -3,47 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shenna&Ivy's Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Shenvy Authentics | Premium Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="overlay" onclick="closePanels()"></div>
 
-    <aside id="bagSidebar" class="sidebar">
-        <div class="side-header">
-            <h2>Your Bag</h2>
-            <button class="close-panel" onclick="closePanels()">&times;</button>
-        </div>
-        <div id="bagItems" class="side-content">
-            </div>
-        <div class="side-footer">
-            <div class="total-row">
-                <span>Total:</span>
-                <span id="bagTotal">₱0</span>
-            </div>
-            <button class="checkout-btn">PROCEED TO CHECKOUT</button>
-        </div>
-    </aside>
-
-    <aside id="wishSidebar" class="sidebar">
-        <div class="side-header">
-            <h2>Wishlist</h2>
-            <button class="close-panel" onclick="closePanels()">&times;</button>
-        </div>
-        <div id="wishItems" class="side-content">
-            </div>
-    </aside>
-
     <nav class="top-nav">
         <div class="nav-top-row">
-            <div class="logo">Shenvy Authentics
-</div>
+            <div class="logo">Shenvy Authentics</div>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search collection..." onkeyup="render()">
             </div>
             <div class="nav-icons">
+                <div class="icon-link admin-trigger" onclick="showLogin()">ADMIN</div>
                 <div class="icon-link" onclick="openPanel('wishSidebar')">♥ <span id="wish-count">0</span></div>
                 <div class="icon-link" onclick="openPanel('bagSidebar')">BAG (<span id="cart-count">0</span>)</div>
             </div>
@@ -67,6 +43,239 @@
         <div class="product-grid-2" id="grid"></div>
     </main>
 
+    <hr style="border: 0.5px solid #eee; margin: 50px 0;">
+
+    <section class="container reviews-section">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2rem;">Customer Stories</h2>
+            <p style="font-size: 13px; color: #777;">Verified feedback gikan sa atong mga suki.</p>
+        </div>
+
+        <div class="review-tabs" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
+            <button class="rev-tab-btn active" onclick="switchReviewTab('store', this)">STORE REVIEWS</button>
+            <button class="rev-tab-btn" onclick="switchReviewTab('items', this)">ITEM REVIEWS</button>
+        </div>
+        
+        <div id="reviewsGrid" class="reviews-grid"></div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="add-btn" onclick="openReviewModal()">+ WRITE A REVIEW</button>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>CUSTOMER SERVICE</h4>
+            <p>We are always here to help you with your shopping needs. Our Help Centre is open 24/7 for your questions regarding orders and delivery. We strive to provide a smooth experience here in Cebu.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>ABOUT SHENVY</h4>
+            <p>Shenvy Authentics is a premium online boutique based in Cebu City. We provide 100% authentic fashion pieces for our valued customers</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>FOLLOW US</h4>
+            <p>Don't miss out on our latest arrivals and exclusive deals by following us. We are active on Facebook, Instagram, and TikTok for live reviews and unboxings of new items. By following, you can be the first to know whenever there are big sales and vouchers. Join our growing community of fashion enthusiasts across Visayas and Mindanao. Tag us in your OOTDs using our products for a chance to be featured on our page</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>SHENVY APP DOWNLOAD</h4>
+            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                <div style="background: #fff; padding: 5px; border: 1px solid #ddd;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=ShenvyApp" alt="QR Code" width="100">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="100" style="cursor:pointer;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="100" style="cursor:pointer;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Explore_it_on_AppGallery.svg" width="100" style="cursor:pointer;">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px; font-size: 11px; color: #999;">
+        © 2026 Shenvy Authentics. All Rights Reserved. Cebu City, Philippines.
+    </div>
+</footer>
+
+   <div id="loginModal" class="sidebar">
+    <div class="side-header">
+        <h2>Admin Login</h2>
+        <button class="close-panel" onclick="closePanels()" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+    </div>
+    
+    <div class="side-content">
+        <input type="text" id="adminUser" placeholder="Username">
+        
+        <input type="password" id="adminPass" placeholder="Password">
+        
+        <button class="checkout-btn" onclick="checkLogin()">ENTER</button>
+    </div>
+</div>
+
+    <aside id="bagSidebar" class="sidebar">
+        <div class="side-header"><h2>Your Bag</h2><button class="close-panel" onclick="closePanels()">&times;</button></div>
+        <div id="bagItems" class="side-content"></div>
+        <div class="side-footer">
+            <div class="total-row"><span>Total:</span><span id="bagTotal">₱0</span></div>
+            <button class="checkout-btn" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+        </div>
+    </aside>
+
+    <<div id="checkoutModal" class="sidebar checkout-sidebar" style="width: 100%; max-width: 500px; right: -550px; left: auto;">
+    <div class="side-header">
+        <h2 style="font-family: 'Playfair Display'; color: #000;">Delivery Details</h2>
+        <button class="close-panel" onclick="closeCheckout()">&times;</button>
+    </div>
+    
+    <div class="side-content" style="background: #fff; padding: 20px;">
+        <div class="form-group">
+            <input type="text" id="custName" placeholder="Full Name">
+            <input type="text" id="custPhone" placeholder="Contact Number">
+            <input type="email" id="custEmail" placeholder="Email Address">
+            <textarea id="custAddr" placeholder="Complete Address (House No., Street, Brgy, City)" rows="3"></textarea>
+        </div>
+
+        <hr style="border: 0.5px solid #eee; margin: 25px 0;">
+
+        <div class="voucher-sec">
+            <h4 style="font-size: 11px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">Shop Voucher</h4>
+            <div style="display: flex; gap: 8px;">
+                <input type="text" id="voucherInput" placeholder="Enter Code (e.g. SHENVYNEW10)" style="flex: 1; margin-bottom: 0;">
+                <button class="apply-btn" onclick="applyManualVoucher()" style="background: #000; color: #fff; border: none; padding: 0 20px; font-weight: 700; cursor: pointer;">APPLY</button>
+            </div>
+            <p id="voucherStatus" style="font-size: 10px; margin-top: 5px;"></p>
+        </div>
+
+        <hr style="border: 0.5px solid #eee; margin: 25px 0;">
+
+        <div class="payment-sec">
+            <h4 style="font-size: 11px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Payment Method</h4>
+            <div class="payment-grid">
+                <label class="pay-option active" onclick="selectPay(this)"><input type="radio" name="pay" checked> COD</label>
+                <label class="pay-option" onclick="selectPay(this)"><input type="radio" name="pay"> GCASH</label>
+                <label class="pay-option" onclick="selectPay(this)"><input type="radio" name="pay"> MAYA</label>
+                <label class="pay-option" onclick="selectPay(this)"><input type="radio" name="pay"> QRPH</label>
+            </div>
+        </div>
+
+        <hr style="border: 0.5px solid #eee; margin: 25px 0;">
+
+        <div id="checkoutItemsList"></div>
+    </div>
+
+    <div class="side-footer" style="padding: 30px; border-top: 1px solid #eee;">
+        <div style="text-align: right; margin-bottom: 20px;">
+            <p style="font-size: 11px; color: #999;">Total Payment:</p>
+            <h2 id="finalTotal" style="color: #000; font-weight: 700;">₱0</h2>
+        </div>
+        <button class="place-order-btn" onclick="placeOrder()">PLACE ORDER</button>
+    </div>
+</div>
+
     <script src="script.js"></script>
+
+    <div id="reviewModal" class="voucher-modal" style="display:none; position:fixed; z-index:3000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+    <div class="voucher-content" style="background:#fff; padding:30px; width:90%; max-width:400px; position:relative; text-align:left;">
+        <button onclick="closeReviewModal()" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+        <h3 style="font-family: 'Playfair Display'; margin-bottom:20px;">Share your experience</h3>
+        
+        <div class="form-group">
+            <input type="text" id="revName" placeholder="Your Name" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
+            <select id="revRating" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
+                <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                <option value="3">⭐⭐⭐ (3 Stars)</option>
+            </select>
+            <textarea id="revComment" placeholder="Write your review here..." rows="4" style="width:100%; padding:10px; border:1px solid #ddd;"></textarea>
+        </div>
+        
+        <button onclick="submitReview()" style="width:100%; background:#000; color:#fff; padding:15px; border:none; margin-top:15px; font-weight:700; cursor:pointer;">SUBMIT REVIEW</button>
+    </div>
+</div>
+
+<div id="loginModal" class="sidebar">
+    <div class="side-header">
+        <h2>Admin Login</h2>
+        <button class="close-panel" onclick="closePanels()">&times;</button>
+    </div>
+    <div class="side-content" style="padding: 40px 20px;">
+        <input type="text" id="adminUser" placeholder="Username" style="width:100%; padding:12px; margin-bottom:10px;">
+        <input type="password" id="adminPass" placeholder="Password" style="width:100%; padding:12px; margin-bottom:20px;">
+        <button class="checkout-btn" onclick="checkLogin()">ENTER DASHBOARD</button>
+    </div>
+</div>
+
+<div id="adminPanel" class="sidebar" style="width: 100%; max-width: 100%; right: -100%;">
+    <div class="side-header">
+        <h2 style="font-family: 'Playfair Display';">Shenvy Admin Management</h2>
+        <button class="close-panel" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div class="side-content" style="padding: 30px 5%;">
+        <div class="admin-tabs" style="display: flex; gap: 20px; border-bottom: 1px solid #eee; margin-bottom: 30px;">
+            <button class="tab-btn active" onclick="showTab('inventory', this)">INVENTORY</button>
+            <button class="tab-btn" onclick="showTab('tracking', this)">ORDER TRACKING</button>
+                <div class="sales-dashboard">
+    <div class="admin-summary-grid">
+        <div class="summary-box">
+            <p>TOTAL SYSTEM ORDERS</p>
+            <h2>15,842</h2>
+        </div>
+        <div class="summary-box">
+            <p>TOTAL SYSTEM SALES</p>
+            <h2 style="color: #FF4500;">₱4,850,000</h2>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <h4>📈 Yearly Revenue Trend (2011 - 2026)</h4>
+        </div>
+        <canvas id="yearlyChart"></canvas>
+    </div>
+
+    <div class="chart-container" style="margin-top: 20px;">
+        <div class="chart-header" style="display: flex; justify-content: space-between;">
+            <h4>📊 Monthly Breakdown</h4>
+            <select id="chartYearSelect"><option>2026</option></select>
+        </div>
+        <canvas id="monthlyChart"></canvas>
+    </div>
+</div>
+        </div>
+        <div id="adminView"></div>
+    </div>
+</div>
+<div id="loginModal" class="sidebar">
+    <div class="side-header" style="border:none;">
+        <h2 style="font-family: 'Playfair Display'; font-size: 1.2rem;">Admin Access</h2>
+        <button class="close-panel" onclick="closePanels()">&times;</button>
+    </div>
+    <div class="side-content">
+        <input type="text" id="adminUser" placeholder="Username">
+        <input type="password" id="adminPass" placeholder="Password">
+        <button class="checkout-btn" onclick="checkLogin()" style="border-radius:4px;">ENTER</button>
+    </div>
+</div>
+<div id="voucherPopup" class="voucher-modal" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
+    <div class="voucher-content" style="background:#fff; padding:50px 30px; text-align:center; position:relative; max-width:400px; width:90%; border: 1px solid #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        
+        <button onclick="closeVoucher()" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; font-weight:300;">&times;</button>
+        
+        <h4 style="letter-spacing: 2px; font-size: 10px; color: #888; margin-bottom: 10px; text-transform: uppercase;">Exclusive Offer</h4>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 5px; font-weight: 700;">50% OFF</h2>
+        <p style="font-size: 13px; color: #333; margin-bottom: 25px; font-weight: 600; line-height: 1.4;">CLAIM YOUR FREE VOUCHER FOR FIRST TIME USERS!</p>
+        
+        <div style="border: 2px dashed #000; padding: 15px; margin-bottom: 25px; background: #fafafa; font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; color: #000;">
+            SHENVY50OFF
+        </div>
+        
+        <button class="claim-btn" onclick="claimVoucher()" style="width:100%; background:#000; color:#fff; border:none; padding:18px; font-weight:700; cursor:pointer; letter-spacing: 1px; transition: 0.3s;">CLAIM VOUCHER</button>
+        
+        <p style="font-size: 10px; color: #aaa; margin-top: 15px; font-style: italic;">*Valid for your first purchase only. Terms and conditions apply.</p>
+    </div>
+</div>
 </body>
 </html>
