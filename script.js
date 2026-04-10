@@ -201,22 +201,22 @@ function closeAdmin() {
 }
 
 function checkLogin() {
-    const u = document.getElementById('adminUser').value;
-    const p = document.getElementById('adminPass').value;
+    const u = document.getElementById('adminUser').value.trim();
+    const p = document.getElementById('adminPass').value.trim();
 
     if (u === "admin" && p === "1234") {
-        closePanels(); 
+        closePanels();
         setTimeout(() => {
             const panel = document.getElementById('adminPanel');
-            panel.classList.add('open'); 
-            panel.style.right = "0";   
+            panel.classList.add('open');
+            panel.style.right = "0";
             document.getElementById('overlay').style.display = 'block';
-            
-          
             showTab('inventory', document.querySelector('.tab-btn'));
         }, 400);
     } else {
-        alert("wrong credtials");
+        alert("Incorrect credentials.");
+        console.log("Attempted User:", u);
+        console.log("Attempted Pass:", p);
     }
 }
 
