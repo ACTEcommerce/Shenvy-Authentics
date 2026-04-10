@@ -204,7 +204,7 @@ function checkLogin() {
     const u = document.getElementById('adminUser').value.trim();
     const p = document.getElementById('adminPass').value.trim();
 
-    if (u === "admin" && p === "1234") {
+    if (u === "admin" && p === "admin") {
         closePanels();
         setTimeout(() => {
             const panel = document.getElementById('adminPanel');
