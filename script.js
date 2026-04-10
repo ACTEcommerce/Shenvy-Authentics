@@ -196,22 +196,23 @@ function filterItems(cat, btn) {
 }
 function closeVoucher() {
     const popup = document.getElementById('voucherPopup');
-    const overlay = document.getElementById('overlay');
-    if (popup) popup.style.display = 'none';
-    if (overlay) overlay.style.display = 'none';
+    if (popup) {
+        popup.style.display = 'none';
+    }
 }
 
+// Mao ni ang i-replace nimo sa karaan nga claimVoucher
 function claimVoucher() {
-    // 1. I-save sa local storage para dili na sige'g pakita
-    localStorage.setItem('shenvy_voucher_claimed', 'true');
-    isVoucherApplied = true;
+    // I-save sa computer para dili na sige'g pakita ang popup
+    localStorage.setItem('shenvy_claimed_50', 'true');
     
-    // 2. I-copy ang code sa clipboard (optional pero nindot)
-    const voucherCode = "SHENVY50OFF";
-    navigator.clipboard.writeText(voucherCode).then(() => {
-        alert("Voucher Claimed! 'SHENVY50OFF' has been copied. 50% discount will be applied at checkout.");
+    // I-copy ang code sa clipboard
+    const code = "SHENVY50OFF";
+    navigator.clipboard.writeText(code).then(() => {
+        alert("Voucher Claimed! '" + code + "' has been copied. Use it at checkout!");
+        closeVoucher();
+    }).catch(err => {
+        alert("Voucher Claimed! Use code: " + code);
+        closeVoucher();
     });
-
-    // 3. Sirado ang popup
-    closeVoucher();
 }
