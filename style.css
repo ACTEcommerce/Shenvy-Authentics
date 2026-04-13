@@ -147,10 +147,18 @@ body {
 }
 
 .nav-top-row {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 25px;
+    flex-direction: column; /* I-stack ang logo ug search bar */
+    gap: 15px;
+    align-items: center;
+}
+
+.search-container {
+    width: 100%; /* Padak-on ang search bar para sayon i-type */
+}
+
+.logo {
+    font-size: 1.1rem; /* Gamayan gamay ang font size */
+    text-align: center;
 }
 
 .logo {
@@ -373,16 +381,62 @@ body {
     max-width: 100%;
 }
 
+/* --- FINAL MOBILE VERSION (Copy-Paste) --- */
 @media (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: 1fr; /* 1 column ra sa mobile */
-        text-align: center;
+    /* Main Layout */
+    .container {
+        padding: 20px 4%;
     }
-    .footer-col p {
-        text-align: center;
+
+    /* Grid Fix */
+    .product-grid-2 {
+        grid-template-columns: 1fr; 
+        gap: 35px;
     }
-    .footer-col div {
-        justify-content: center;
+
+    /* Image Fix - Dili na ma-stretch */
+    .img-holder {
+        height: auto;
+        aspect-ratio: 4 / 5;
+        margin-bottom: 10px;
+    }
+
+    /* Navigation Fix */
+    .nav-top-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-icons {
+        width: 100%;
+        justify-content: space-around;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    /* Sidebar Full Screen */
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        right: -100% !important;
+    }
+    
+    .sidebar.open {
+        right: 0 !important;
+    }
+
+    /* Admin Panel Mobile */
+    .admin-nav-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-box h2 {
+        font-size: 1.5rem;
     }
 }
 /* E-replace kini sa imong daan nga checkout CSS selectors */
@@ -956,9 +1010,5 @@ body {
 @keyframes blink {
     50% { opacity: 0.5; }
 }
-@media (max-width: 480px) {
-    .sidebar {
-        width: 100%;
-        right: -100%;
-    }
+
 }
