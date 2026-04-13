@@ -39,10 +39,10 @@
         </div>
     </nav>
 
- <main class="container">
-    <div class="product-grid-2" id="grid">
-        </div>
-</main>
+    <main class="container">
+        <div class="product-grid-2" id="grid"></div>
+    </main>
+
     <hr style="border: 0.5px solid #eee; margin: 50px 0;">
 
     <section class="container reviews-section">
@@ -100,7 +100,42 @@
     </div>
 </footer>
 
- 
+   <div id="loginModal" class="sidebar">
+    <div class="side-header">
+        <h2>Admin Login</h2>
+        <button class="close-panel" onclick="closePanels()" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+    </div>
+    
+    <div class="side-content">
+        <input type="text" id="adminUser" placeholder="Username">
+        
+        <input type="password" id="adminPass" placeholder="Password">
+        
+        <button class="checkout-btn" onclick="checkLogin()">ENTER</button>
+    </div>
+    <div id="loginModal" class="sidebar">
+    <div class="side-header">
+        <h2 style="font-family: 'Playfair Display';">Security</h2>
+        <button class="close-panel" onclick="closePanels()">&times;</button>
+    </div>
+    
+    <div class="side-content">
+        <div style="margin-bottom: 30px;">
+            <p style="font-size: 11px; color: #888; letter-spacing: 2px; text-transform: uppercase;">Admin Authentication</p>
+            <h1 style="font-size: 1.5rem; font-weight: 800;">WELCOME BACK</h1>
+        </div>
+
+        <input type="text" id="adminUser" placeholder="Username">
+        <input type="password" id="adminPass" placeholder="Password">
+        
+        <button class="checkout-btn" onclick="checkLogin()">LOGIN TO DASHBOARD</button>
+        
+        <p style="text-align: center; font-size: 10px; color: #ccc; margin-top: 30px;">
+            Authorized Access Only. All activities are logged.
+        </p>
+    </div>
+</div>
+</div>
 
     <aside id="bagSidebar" class="sidebar">
         <div class="side-header"><h2>Your Bag</h2><button class="close-panel" onclick="closePanels()">&times;</button></div>
@@ -183,64 +218,40 @@
     </div>
 </div>
 
-<div id="loginModal" class="sidebar">
-    <div class="side-header">
-        <h2>Admin Login</h2>
-        <button class="close-panel" onclick="closePanels()">&times;</button>
+
+
+
+   <div id="adminPanel" class="sidebar admin-full">
+    <div class="admin-full-page">
+        <div class="admin-title-section">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="font-size: 2.5rem; font-weight: 800; margin:0;">ADMIN SYSTEM</h1>
+                <button class="store-front-btn" onclick="closeAdmin()">STORE FRONT</button>
+            </div>
+            
+            <div class="admin-nav-grid" style="margin-top: 20px;">
+                <button class="nav-block" onclick="showTab('sales', this)">📊 SALES</button>
+                <button class="nav-block" onclick="showTab('inventory', this)">📦 INVENTORY</button>
+                <button class="nav-block" onclick="showTab('tracking', this)">🚚 ORDERS</button>
+            </div>
+        </div>
+
+        <div id="adminView" style="margin-top: 20px; min-height: 200px;"></div>
     </div>
-    <div class="side-content" style="padding: 40px 20px;">
-        <input type="text" id="adminUser" placeholder="Username" style="width:100%; padding:12px; margin-bottom:10px;">
-        <input type="password" id="adminPass" placeholder="Password" style="width:100%; padding:12px; margin-bottom:20px;">
-        <button class="checkout-btn" onclick="checkLogin()">ENTER DASHBOARD</button>
+</div>
+      
+    
+
+    <div id="adminView" style="margin-top: 20px; min-height: 200px;"></div>
+</div>
     </div>
 </div>
 
-<div id="adminPanel" class="sidebar" style="width: 100%; max-width: 100%; right: -100%;">
-    <div class="side-header">
-        <h2 style="font-family: 'Playfair Display';">Shenvy Admin Management</h2>
-        <button class="close-panel" onclick="closeAdmin()">&times;</button>
-    </div>
-    <div class="side-content" style="padding: 30px 5%;">
-        <div class="admin-tabs" style="display: flex; gap: 20px; border-bottom: 1px solid #eee; margin-bottom: 30px;">
-            <button class="tab-btn active" onclick="showTab('inventory', this)">INVENTORY</button>
-            <button class="tab-btn" onclick="showTab('tracking', this)">ORDER TRACKING</button>
-                <div class="sales-dashboard">
-    <div class="admin-summary-grid">
-        <div class="summary-box">
-            <p>TOTAL SYSTEM ORDERS</p>
-            <h2>15,842</h2>
-        </div>
-        <div class="summary-box">
-            <p>TOTAL SYSTEM SALES</p>
-            <h2 style="color: #FF4500;">₱4,850,000</h2>
-        </div>
-    </div>
-
-    <div class="chart-container">
-        <div class="chart-header">
-            <h4>📈 Yearly Revenue Trend (2011 - 2026)</h4>
-        </div>
-        <canvas id="yearlyChart"></canvas>
-    </div>
-
-    <div class="chart-container" style="margin-top: 20px;">
-        <div class="chart-header" style="display: flex; justify-content: space-between;">
-            <h4>📊 Monthly Breakdown</h4>
-            <select id="chartYearSelect"><option>2026</option></select>
-        </div>
-        <canvas id="monthlyChart"></canvas>
-    </div>
-</div>
-        </div>
-        <div id="adminView"></div>
-    </div>
-</div>
 <div id="voucherPopup" class="voucher-modal" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
     <div class="voucher-content" style="background:#fff; padding:50px 30px; text-align:center; position:relative; max-width:400px; width:90%; border: 1px solid #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
         
-<button onclick="closeVoucher()" style="..."> &times; </button>
-
-<button class="claim-btn" onclick="claimVoucher()" style="..."> CLAIM VOUCHER </button>        
+        <button onclick="closeVoucher()" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; font-weight:300;">&times;</button>
+        
         <h4 style="letter-spacing: 2px; font-size: 10px; color: #888; margin-bottom: 10px; text-transform: uppercase;">Exclusive Offer</h4>
         <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 5px; font-weight: 700;">50% OFF</h2>
         <p style="font-size: 13px; color: #333; margin-bottom: 25px; font-weight: 600; line-height: 1.4;">CLAIM YOUR FREE VOUCHER FOR FIRST TIME USERS!</p>
