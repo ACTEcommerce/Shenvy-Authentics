@@ -27,15 +27,18 @@ const bags = [
 
     // --- INITIAL LOAD & POPUP ---
     window.onload = function() {
-        render();
-        const hasClaimed = localStorage.getItem('shenvy_voucher_claimed');
-        if (!hasClaimed) {
-            setTimeout(() => {
-                const popup = document.getElementById('voucherPopup');
-                if(popup) popup.style.display = 'flex';
-            }, 2000);
-        }
-    };
+    render();        // I-load ang products grid
+    renderReviews(); // I-load ang reviews section
+    
+    // I-check ang voucher popup
+    const hasClaimed = localStorage.getItem('shenvy_voucher_claimed');
+    if (!hasClaimed) {
+        setTimeout(() => {
+            const popup = document.getElementById('voucherPopup');
+            if(popup) popup.style.display = 'flex';
+        }, 2000);
+    }
+};
 
     function closeVoucher() { document.getElementById('voucherPopup').style.display = 'none'; }
 
