@@ -382,64 +382,70 @@ body {
 }
 
 /* --- FINAL MOBILE VERSION (Copy-Paste) --- */
-@media (max-width: 768px) {
-    /* Main Layout */
-    .container {
-        padding: 20px 4%;
-    }
-
-    /* Grid Fix */
+/* --- ULTRA MOBILE FIX (PARA SA CP) --- */
+@media (max-width: 600px) {
+    /* 1. Himoon natong usa ra ka item ang mo-fill sa screen width */
     .product-grid-2 {
-        grid-template-columns: 1fr; 
-        gap: 35px;
+        grid-template-columns: 1fr; /* 1 Column ra gyud */
+        gap: 40px; /* Spacing sa tunga sa mga items */
     }
 
-    /* Image Fix - Dili na ma-stretch */
+    /* 2. I-fix ang container padding para dili masayang ang space sa kilid */
+    .container {
+        padding: 20px 15px; /* Gamay ra nga space sa kilid para dako ang product */
+    }
+
+    /* 3. KINI ANG PINAKA-IMPORTANTE: I-fix ang Image para dili ma-stretch */
     .img-holder {
-        height: auto;
-        aspect-ratio: 4 / 5;
-        margin-bottom: 10px;
+        width: 100%;
+        height: auto; /* Tangtanga ang 550px */
+        aspect-ratio: 1 / 1; /* Himoon natong square para perfect fit sa screen */
+        background: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Navigation Fix */
+    .img-holder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Siguroha nga mo-fill ang image sa square area */
+    }
+
+    /* 4. Navigation Fix para dili maghuot ang Logo */
     .nav-top-row {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+        padding-bottom: 10px;
     }
-    
+
     .logo {
-        font-size: 1.2rem;
-        letter-spacing: 1px;
+        font-size: 1.1rem;
+        text-align: center;
     }
 
     .nav-icons {
         width: 100%;
-        justify-content: space-around;
-        padding-top: 10px;
-        border-top: 1px solid #eee;
+        justify-content: space-between;
+        font-size: 0.7rem;
     }
 
-    /* Sidebar Full Screen */
+    /* 5. Sidebar Fix - Full screen na gyud ni sa CP */
     .sidebar {
-        width: 100% !important;
-        max-width: 100% !important;
-        right: -100% !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        right: -100vw !important;
     }
-    
+
     .sidebar.open {
         right: 0 !important;
     }
 
-    /* Admin Panel Mobile */
-    .admin-nav-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .summary-box h2 {
-        font-size: 1.5rem;
+    /* 6. Checkout Textarea Fix */
+    .form-group textarea {
+        height: 80px;
     }
 }
-/* E-replace kini sa imong daan nga checkout CSS selectors */
 
 /* Form Input Styling */
 .form-group input, .form-group textarea {
