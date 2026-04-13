@@ -1,4 +1,4 @@
-// 1. PRODUCT DATA
+
 const bags = [
     { id: 1, name: "Hannah Montana bag", cat: "Hand Bag", price: 8500, img: "veloura.png", stock: 15 },
     { id: 2, name: "Blue Vayot", cat: "Hand Bag", price: 15800, img: "obsidian.png", stock: 8 },
@@ -25,12 +25,12 @@ const bags = [
     let currentFilter = 'all';
     let isVoucherApplied = false;
 
-    // --- INITIAL LOAD & POPUP ---
-    window.onload = function() {
-    render();        // I-load ang products grid
-    renderReviews(); // I-load ang reviews section
     
-    // I-check ang voucher popup
+    window.onload = function() {
+    render();       
+    renderReviews(); 
+    
+    
     const hasClaimed = localStorage.getItem('shenvy_voucher_claimed');
     if (!hasClaimed) {
         setTimeout(() => {
@@ -49,7 +49,7 @@ const bags = [
         closeVoucher();
     }
 
-// --- STORE LOGIC ---
+
 function render() {
     const grid = document.getElementById('grid');
     const search = document.getElementById('searchInput').value.toLowerCase();
@@ -98,7 +98,7 @@ function updateUI() {
         </div>`).join('') || '<p>Empty Bag.</p>';
 }
 
-// --- CHECKOUT LOGIC ---
+
 function openCheckout() {
     if (cart.length === 0) return alert("Puno sa imong bag, bai!");
     closePanels();
@@ -144,7 +144,7 @@ function applyManualVoucher() {
         isVoucherApplied = true;
         status.innerText = "Voucher Applied! 10% Discount active.";
         status.style.color = "green";
-        calculateTotals(); // Refresh payment amount
+        calculateTotals(); 
     } else {
         status.innerText = "Invalid Voucher Code.";
         status.style.color = "red";
@@ -175,23 +175,23 @@ function placeOrder() {
     closeCheckout();
 }
 
-// --- SYSTEM HELPERS ---
+
 function openPanel(id) { 
     document.getElementById(id).classList.add('open'); 
     document.getElementById('overlay').style.display = 'block'; 
 }
 function closePanels() {
-    // Sirhan tanang modal/sidebar
+  
     document.querySelectorAll('.sidebar').forEach(s => {
         s.classList.remove('open');
-        // Para sa mga sidebars nga naay inline style:
+       
         if(s.id !== 'loginModal') s.style.right = "-100%";
     });
     document.getElementById('loginModal').classList.remove('open');
     document.getElementById('overlay').style.display = 'none';
 }
 function showLogin() {
-    closePanels(); // Siguroha nga sirado ang uban
+    closePanels();
     const login = document.getElementById('loginModal');
     login.classList.add('open');
     document.getElementById('overlay').style.display = 'block';
@@ -208,16 +208,16 @@ function checkLogin() {
     const p = document.getElementById('adminPass').value;
 
     if (u === "admin" && p === "1234") {
-        closePanels(); // Sirhan ang login
+        closePanels(); 
         
         setTimeout(() => {
-            const panel = document.getElementById('adminPanel'); // Siguroha nga match ang ID sa HTML
+            const panel = document.getElementById('adminPanel'); 
             if(panel) {
                 panel.classList.add('open');
-                panel.style.right = "0"; // Force slide
+                panel.style.right = "0"; 
                 document.getElementById('overlay').style.display = 'block';
                 
-                // I-load dayon ang inventory
+               
                 showTab('inventory', document.querySelector('.nav-block'));
             } else {
                 console.error("Dili makit-an ang adminPanel nga ID, bai!");
@@ -239,9 +239,9 @@ function showAbout(type) {
     const display = document.getElementById('aboutDisplay');
     display.style.display = 'block';
     const info = {
-        company: "Shenvy Authentics nagsugod sa Cebu kaniadtong 2024...",
-        products: "De-kalidad ug orihinal nga mga bags...",
-        owner: "Gipanag-iya ni Jecjeckoh ug Ivy."
+        company: "Shenvy Authentics was established in Cebu in 2024 with a vision for high-end fashion. We are dedicated to providing the local market with curated, premium accessories that stand the test of time. Our boutique has quickly become a trusted destination for style enthusiasts seeking elegance and quality.",
+        products: "We specialize in offering a premium collection of high-quality and 100% authentic bags. Every piece is meticulously selected to ensure it meets our strict standards for craftsmanship and durability. Our customers can shop with absolute confidence knowing they are investing in genuine luxury.",
+        owner: "Shenvy Authentics is proudly owned and managed by Shenna and Ivy. Their shared passion for authentic fashion and entrepreneurial spirit drives the brand's commitment to excellence. Together, they strive to bring a world-class shopping experience to the heart of Cebu City"
     };
     display.innerHTML = `<p>${info[type]}</p>`;
     display.scrollIntoView({ behavior: 'smooth' });
@@ -254,7 +254,6 @@ function footerMsg(title, msg) {
     fbox.style.display = 'block';
     fbox.scrollIntoView({ behavior: 'smooth' });
 }
-// Reviews Data
 let storeData = [
     { name: "Maria C.", stars: 5, msg: "Legit items! Fast delivery here in Cebu.", date: "2026-04-01" },
     { name: "Juan D.", stars: 5, msg: "Shenvy is my go-to for authentic bags. 10/10!", date: "2026-04-05" },
@@ -267,7 +266,7 @@ let itemData = [
 
 let activeReviewTab = 'store';
 
-// Patawagon ni inig load sa website
+
 function renderReviews() {
     const grid = document.getElementById('reviewsGrid');
     if(!grid) return;
@@ -291,12 +290,12 @@ function switchRevTab(tab, btn) {
     renderReviews();
 }
 
-// SIGUROHA NGA NAA NI SA 
+
 window.onload = function() {
-    render(); // imong products grid
-    renderReviews(); // i-load ang reviews
+    render(); 
+    renderReviews(); 
 };
-// 1. DATA (Dapat naa ni sa gawas)
+
 let storeReviews = [
     { name: "Maria C.", rating: 5, comment: "Legit items! Fast delivery here in Cebu.", date: "2026-04-01" },
     { name: "Juan D.", rating: 5, comment: "Shenvy is my go-to for authentic bags. 10/10!", date: "2026-04-05" },
@@ -309,18 +308,18 @@ let itemReviews = [
 
 let activeTab = 'store';
 
-// 2. SWITCH TAB FUNCTION
+
 function switchReviewTab(tab, btn) {
-    // UI Change sa buttons
+    
     document.querySelectorAll('.rev-tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    // Logic change
+    
     activeTab = tab;
     renderReviews();
 }
 
-// 3. RENDER FUNCTION
+
 function renderReviews() {
     const container = document.getElementById('reviewsGrid');
     if(!container) return;
@@ -337,7 +336,7 @@ function renderReviews() {
     `).join('');
 }
 
-// 4. MODAL & SUBMISSION
+
 function openReviewModal() {
     document.getElementById('reviewModal').style.display = 'flex';
 }
@@ -360,7 +359,7 @@ function submitReview() {
         date: new Date().toISOString().split('T')[0]
     };
 
-    // I-add sa saktong array depende sa active tab
+  
     if(activeTab === 'store') storeReviews.unshift(newRev);
     else itemReviews.unshift(newRev);
 
@@ -368,7 +367,7 @@ function submitReview() {
     closeReviewModal();
     alert("Salamat sa imong review, bai!");
     
-    // Reset form
+   
     document.getElementById('revName').value = "";
     document.getElementById('revComment').value = "";
 }
@@ -376,8 +375,8 @@ function strictAddStock(id) {
     const bag = bags.find(b => b.id === id);
     if (!bag) return;
 
-    // Stricto nga check
-    const pass = prompt(`ADMIN AUTHENTICATION: Pila ka stock imong i-add sa ${bag.name}?`);
+   
+    const pass = prompt(`ADMIN AUTHENTICATION: Add stock ${bag.name}?`);
     
     if (pass === null || pass === "") return; // Gi-cancel
 
@@ -386,17 +385,17 @@ function strictAddStock(id) {
     if (isNaN(amount) || amount <= 0) {
         alert("Sayop nga input, bai! Kinahanglan numero ug dako sa zero.");
     } else {
-        // Confirmation password (optional, pwede nimo tangtangon)
+    
         const confirmPass = prompt("Enter Admin Password to confirm:");
         if (confirmPass === "1234") {
             bag.stock += amount;
-            alert(`SUCCESS: Added ${amount} units to ${bag.name}. Bag-ong stock: ${bag.stock}`);
+            alert(`SUCCESS: Added ${amount} units to ${bag.name}. New Stock: ${bag.stock}`);
             
-            // I-refresh ang inventory view para makita ang update
+         
             const activeBtn = document.querySelector('.nav-block.active');
             showTab('inventory', activeBtn);
             
-            // I-refresh sab ang main store grid
+          
             render(); 
         } else {
             alert("WRONG PASSWORD. Action Denied.");
@@ -404,14 +403,14 @@ function strictAddStock(id) {
     }
 }
 function showTab(tab, btn) {
-    // 1. Highlight sa button
+
     document.querySelectorAll('.nav-block').forEach(b => b.classList.remove('active'));
     if(btn) btn.classList.add('active');
 
     const view = document.getElementById('adminView');
     if(!view) return;
 
-    view.innerHTML = ""; // Limpyohan ang view
+    view.innerHTML = "";
 
     if (tab === 'sales') {
         view.innerHTML = `
@@ -554,26 +553,25 @@ function showTab(tab, btn) {
     }
 }
 
-// PARA MO-LOAD DAYON ANG SALES INIG OPEN
-// Ayaw na paggamit og window.onload = function kay basin naay lain window.onload
+
 function initAdmin() {
     const firstBtn = document.querySelector('.nav-block');
     if(firstBtn) showTab('sales', firstBtn);
 }
-// Tawagon ni inig click nimo sa trigger nga mo-abli sa admin
+
 function addStock(id) {
     const bag = bags.find(b => b.id === id);
     if(bag) {
         bag.stock += 5;
         alert("Added 5 stocks to " + bag.name);
-        showTab('inventory', document.querySelector('.tab-btn.active')); // Refresh table
-        render(); // Refresh main store grid
+        showTab('inventory', document.querySelector('.tab-btn.active')); 
+        render();
     }
 }
 
 
 function renderSalesCharts() {
-    // Yearly Line Chart
+  
     const ctxYear = document.getElementById('yearlyChart').getContext('2d');
     new Chart(ctxYear, {
         type: 'line',
@@ -590,7 +588,7 @@ function renderSalesCharts() {
         }
     });
 
-    // Monthly Bar Chart
+
     const ctxMonth = document.getElementById('monthlyChart').getContext('2d');
     new Chart(ctxMonth, {
         type: 'bar',
@@ -605,7 +603,7 @@ function renderSalesCharts() {
     });
 }
 function renderSalesCharts() {
-    // Yearly Line Chart
+
     const ctxYear = document.getElementById('yearlyChart').getContext('2d');
     new Chart(ctxYear, {
         type: 'line',
@@ -622,7 +620,7 @@ function renderSalesCharts() {
         }
     });
 
-    // Monthly Bar Chart
+
     const ctxMonth = document.getElementById('monthlyChart').getContext('2d');
     new Chart(ctxMonth, {
         type: 'bar',
@@ -631,7 +629,7 @@ function renderSalesCharts() {
             datasets: [{
                 label: 'Monthly Sales for 2026 (₱)',
                 data: [125000, 120000, 158000, 138000, 148000, 155000, 98000, 78000, 168000, 132000, 72000, 108000],
-                backgroundColor: '#FF4500' // Orange-Red color base sa imong pic
+                backgroundColor: '#FF4500' 
             }]
         }
     });
@@ -643,8 +641,8 @@ function updateTracker(name, status) {
     if(nameEl && statusEl) {
         nameEl.innerText = name;
         statusEl.innerText = (status === 'In Transit') 
-            ? "Otw na ang courier sa inyong area, bai!" 
-            : "Gi-pack pa ang item sa Shenvy Cebu Warehouse.";
+            ? "Courier is on the way!" 
+            : "Still at warehouse";
         
         console.log("Tracking updated for:", name);
     }
