@@ -164,7 +164,7 @@ function placeOrder() {
     const address = document.getElementById('custAddr').value.trim();
 
     if (!name || !phone || !email || !address) {
-        alert("Palihog kompletoha ang imong details (Name, Phone, Email, ug Address)!");
+        alert("Please complete the details (Name, Phone, Email, ug Address)!");
         return;
     }
 
@@ -220,11 +220,11 @@ function checkLogin() {
                
                 showTab('inventory', document.querySelector('.nav-block'));
             } else {
-                console.error("Dili makit-an ang adminPanel nga ID, bai!");
+                console.error("IT cannot be found");
             }
         }, 400);
     } else {
-        alert("Sayop ang credentials, bai!");
+        alert("Invalid Credentials");
     }
 }
 
@@ -350,7 +350,7 @@ function submitReview() {
     const rating = document.getElementById('revRating').value;
     const comment = document.getElementById('revComment').value;
 
-    if(!name || !comment) return alert("Palihog kompletoha ang porma, bai!");
+    if(!name || !comment) return alert("Please fill the form");
 
     const newRev = {
         name: name,
@@ -383,7 +383,7 @@ function strictAddStock(id) {
     const amount = parseInt(pass);
 
     if (isNaN(amount) || amount <= 0) {
-        alert("Sayop nga input, bai! Kinahanglan numero ug dako sa zero.");
+        alert("Wrong input, Should be greater than 0");
     } else {
     
         const confirmPass = prompt("Enter Admin Password to confirm:");
